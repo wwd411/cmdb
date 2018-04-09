@@ -44,8 +44,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
         # 'NAME': 'voilet_cmdb_v1',  # Or path to database file if using sqlite3.
         'NAME': 'cmdb_v2',  # Or path to database file if using sqlite3.
-         'USER': 'root',
-         'PASSWORD': '123456',  # Not used with sqlite3.
+         'USER': 'cmdb',
+         'PASSWORD': 'sRU16BKDlNQ+zRoGE78qRQ==',  # Not used with sqlite3.
         'HOST': '127.0.0.1',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '3306',  # Set to empty string for default. Not used with sqlite3.
         "OPTIONS": {

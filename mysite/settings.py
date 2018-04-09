@@ -208,19 +208,19 @@ LOGGING = {
     }
 }
 
-EMAIL_HOST = 'mail.qq.com'
+EMAIL_HOST = 'smtp.exmail.qq.com'
 EMAIL_PORT = '25'
-EMAIL_HOST_USER = 'devops'
-EMAIL_HOST_PASSWORD = '123456'
+EMAIL_HOST_USER = 'monitor@asia-isp.com'
+EMAIL_HOST_PASSWORD = '8SPOe82+SL1N9VVKYL1hxQ=='
 EMAIL_USE_TLS = False
 EMAIL_PUSH = True
 
 # 发送邮件帐号
-SendMail = "ops@xxx.com"
+SendMail = "monitor@asia-isp.com"
 
 
-REDIS_HOST = "127.0.0.1"
-REDIS_PORT = 6379
+REDIS_HOST = "192.168.1.5"
+REDIS_PORT = 6380
 REDIS_DB = 0
 
 django_path = os.getcwd()
@@ -243,17 +243,17 @@ else:
 #
 # BOOTSTRAP_COLUMN_COUNT = 10
 
-# salt cdn api info
+# salt api info
 # 如机房有核心 或 cdn则会调用此处使用
-salt_cdn_url = 'https://192.168.111.142/'
-salt_center_url = 'https://192.168.111.101/'
-salt_user = 'salt'
-salt_passwd = '992a15aecbcf5727df775c45a35738cf'
+salt_cdn_url = 'https://192.168.1.7:7000/'
+salt_center_url = 'https://192.168.1.7:7000/'
+salt_user = 'saltapi'
+salt_passwd = 'salt2018'
 
 # zabbix api info
 zabbix_on = False
-zabbix_url = 'http://192.168.111.47:8080/zabbix'
+zabbix_url = 'http://zabbix.asia-cdn.com/'
 zabbix_user = 'admin'
-zabbix_passwd = 'zabbix'
+zabbix_passwd = 'zz/4A3dyazha2ucBon7Qkg=='
 
 
