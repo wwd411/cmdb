@@ -1,0 +1,5 @@
+*.pyc
+nohup.out
+mysite_uwsgi.ini
+mysite/settings.py
+mysite/prod.py
