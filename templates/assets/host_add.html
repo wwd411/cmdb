@@ -1,7 +1,8 @@
 {% extends 'default/base.html' %}
 {% load bootstrap %}
 {% block content %}
-
+<link href="/static/new/js/bootstrap-select.min.css" rel="stylesheet">
+<script src="/static/new/js/bootstrap-select.min.js"></script>
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
         <h2>添加主机 | Add Host.</h2>
@@ -69,16 +70,51 @@
                     </div>
 
                     <div class="hr-line-dashed"></div>
-                    {{ uf.brand|bootstrap_horizontal }}
+                    <!--{{ uf.brand|bootstrap_horizontal }}-->
+                    <div class="form-group">
+                         <label class="control-label col-sm-2 col-lg-2 " for="id_brand">硬件厂商</label>
+                        <div class=" col-sm-10 col-lg-10 ">
+                            <!--{{uf.brand|striptags}} 删掉模板变量中的HTML标签-->
+                            <input id="yjcs" value="{{uf.brand|striptags}}" type="hidden">
+                            <!--required 单选   multiple 多选-->
+                            <select class="form-control selectpicker show-tick"  required  data-live-search="true" id="id_brand" name="brand">
+                                <!--{%for yjcs in uf.brand%}-->
+                                    <!--<option value={{yjcs}}</option>-->
+                                <!--{%endfor%}-->
+                            </select>
+                        </div>
+                    </div>
 
                     <div class="hr-line-dashed"></div>
-                    {{ uf.system|bootstrap_horizontal }}
+                    <!--{{ uf.system|bootstrap_horizontal }}-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2 col-lg-2 " for="id_system">系统类型</label>
+                        <div class=" col-sm-10 col-lg-10 ">
+                            <input id="xtlx" value="{{uf.system|striptags}}" type="hidden">
+                            <select class=" form-control selectpicker show-tick" required  data-live-search="true" id="id_system" name="system">
+                             <!--{%for xtlx in uf.system%}-->
+                                    <!--<option value={{xtlx}}</option>-->
+                             <!--{%endfor%}-->
+                            </select>
+                        </div>
+                    </div>
 
 {#                    <div class="hr-line-dashed"></div>#}
 {#                    {{ uf.vm|bootstrap_horizontal }}#}
 
                     <div class="hr-line-dashed"></div>
-                    {{ uf.system_cpuarch|bootstrap_horizontal }}
+                    <!--{{ uf.system_cpuarch|bootstrap_horizontal }}-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2 col-lg-2 " for="id_system_cpuarch">系统版本</label>
+                        <div class=" col-sm-10 col-lg-10 ">
+                            <input id="xtbb" value="{{uf.system_cpuarch|striptags}}" type="hidden">
+                            <select class=" form-control selectpicker show-tick" required  data-live-search="true" id="id_system_cpuarch" name="system_cpuarch">
+                            <!--{%for xtbb in uf.system_cpuarch%}-->
+                                    <!--<option value={{xtbb}}</option>-->
+                             <!--{%endfor%}-->
+                            </select>
+                        </div>
+                    </div>
 
                     <div class="hr-line-dashed"></div>
                     <div class="form-group">
@@ -168,7 +204,34 @@
     </div>
 </div>
 <script>
-    window.$ && $(function(){
+    //改变Django模板数据格式添加option
+    function addOption(data,select){
+
+        var list=data.split('\n');
+        list.splice(0,1);
+
+        for(var i=0;i<list.length-1;i++){
+            select.append("<option value='"+list[i]+"'>"+list[i]+"</option>");
+        }
+    }
+    var data1=$("#yjcs").val();
+    var select1=$("#id_brand");
+    addOption(data1,select1);
+
+    var data2=$("#xtlx").val();
+    var select2=$("#id_system");
+    addOption(data2,select2);
+
+    var data3=$("#xtbb").val();
+    var select3=$("#id_system_cpuarch");
+    addOption(data3,select3);
+
+    $(function(){
+    //给select下拉框添加输入搜索
+    $('.selectpicker').selectpicker({
+
+    });
+
     //验证初始化
         $('#host_add').validator({
             //stopOnError:true,
@@ -190,43 +253,43 @@
             //     data: {'data-ok':"主机名可以使用", 'data-msg-required': '正确'}
             // },
             "mac": {
-                rule: "required;check_mac",
+                rule: "check_mac",
                 tip: "输入MAC",
                 ok: "",
-                msg: {required: "必须填写!"}
+                msg: {required: "可不填写!"}
             },
             "eth1":{
-                rule: "required;check_ip",
+                rule: "check_ip",
                 tip: "输入ip地址",
                 ok:"",
-                msg:{required: "必须填写!"}
+                msg:{required: "可不填写!"}
             },
             "internal_ip":{
-                rule: "required;",
+                rule: "",
                 tip: "远控卡ip",
                 ok:"",
-                msg:{required: "必须填写!"}
+                msg:{required: "可不填写!"}
             },
             "brand":{
-                rule: "required;",
+                rule: "",
                 tip: "",
                 ok:"",
                 msg:{required: "必须填写!"}
             },
             "idc":{
-                rule: "required;",
+                rule: "",
                 tip: "",
                 ok:"",
                 msg:{required: "必须填写!"}
             },
             "system":{
-                rule: "required;",
-                tip: "",
+                rule: "",
+                tip: "系统类型",
                 ok:"",
-                msg:{required: "必须填写!"}
+                msg:{required: "可不填写!"}
             },
              "idc":{
-                rule: "required;",
+                rule: "",
                 tip: "",
                 ok:"",
                 msg:{required: "必须填写!"}
